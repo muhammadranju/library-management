@@ -1,69 +1,144 @@
-# React + TypeScript + Vite
+# Library Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, full-stack **Library Management System** built with:
 
-Currently, two official plugins are available:
+- **React**
+- **Tailwind CSS**
+- **ShadCN UI**
+- **Redux Toolkit & RTK Query**
+- **MongoDB (with Mongoose)**
+- **Express.js Backend (via API routes or a separate server)**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- View all books with pagination
+- Add, ✏️ Edit, ❌ Delete books
+- Borrow and return books
+- Real-time availability update
+- Global state management using Redux Toolkit
+- Fully responsive and elegant UI using ShadCN and Tailwind CSS
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## Project Structure
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+.
+├── components/ # UI components (modular and reusable)
+│ ├── module/ # Dialogs and BookCard UI
+│ └── Skeletons/ # Loading states
+├── redux/ # RTK store and API slices
+│ ├── api/ # RTK Query APIs (books & borrows)
+│ └── store.ts # Redux store setup
+├── pages/ or app/ # Next.js App pages
+├── types/ # Shared TypeScript interfaces
+├── utils/ # Utility functions (if needed)
+├── public/ # Static assets
+└── README.md # You're here!
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
 ```
+
+---
+
+## Tech Stack
+
+| Frontend    | Backend            | Styling      | State/API     |
+| ----------- | ------------------ | ------------ | ------------- |
+| react.js 14 | Express.js         | Tailwind CSS | Redux Toolkit |
+| React       | MongoDB + Mongoose | ShadCN UI    | RTK Query     |
+
+---
+
+## Setup Instructions
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/muhammadranju/library-management.git
+cd library-management
+```
+
+### 2. Install Dependencies
+
+```bash
+npm install
+# or
+yarn install
+```
+
+### 3. Environment Variables
+
+Create a `.env.local` file and add the following:
+
+```
+MONGODB_URI=your_mongodb_connection_string
+API_BASE_URL=http://localhost:3000/api
+```
+
+> Adjust the API URL if using a separate backend.
+
+### 4. Run the Development Server
+
+```bash
+npm run dev
+# or
+yarn dev
+```
+
+Open your browser at `http://localhost:3000`.
+
+---
+
+## Pagination
+
+Books are loaded with **pagination** from the backend using RTK Query. You can navigate using **Previous / Next / Page buttons**, and the component fetches data dynamically based on the current page.
+
+---
+
+## API Overview (via RTK Query)
+
+- `GET /books?page=1&limit=9`
+- `POST /books` — Add book
+- `PUT /books/:id` — Update book
+- `DELETE /books/:id` — Delete book
+- `GET /borrows` — Get all borrow records
+- `POST /borrows` — Borrow a book
+
+API data is fetched using **RTK Query** for caching, auto refetching, and consistent state updates.
+
+---
+
+## UI and Styling
+
+- Built with **ShadCN UI** components (Dialogs, Buttons, Inputs)
+- Styled using **Tailwind CSS**
+- Custom Skeletons for loading states
+- Accessible, clean, and responsive design
+
+---
+
+## TypeScript Types
+
+All components and API data are strongly typed using shared `IBook` and `IBorrow` interfaces in `types/`.
+
+```ts
+interface IBook {
+  _id: string;
+  title: string;
+  author: string;
+  genre: string;
+  isbn: string;
+  image: string;
+  copies: number;
+  available: boolean;
+}
+```
+
+---
+
+## 🧠 Author
+
+Built with ❤️ by Md Ranju
