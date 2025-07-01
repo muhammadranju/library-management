@@ -62,9 +62,9 @@ export const Nav = () => {
             </svg>
           </button>
           {isMenuOpen && (
-            <div className="absolute top-0 left-0 w-full">
-              <div className="p-5 bg-white dark:bg-black border rounded shadow-sm text-black dark:text-white">
-                <div className="flex items-center justify-between mb-4">
+            <div className="absolute top-0 left-0 w-full z-50">
+              <div className="p-5 bg-white dark:bg-[#1C1C1C] border rounded shadow-sm text-black dark:text-white">
+                <div className="flex items-center justify-between mb-4 ">
                   <div>
                     <Link className="inline-flex items-center mr-8" to={"/"}>
                       <img
@@ -99,12 +99,12 @@ export const Nav = () => {
                 <nav>
                   <ul className="space-y-4">
                     <Link to={"/books"}>
-                      <li className="font-medium tracking-wide text-black dark:text-white transition-colors duration-200 hover:underline">
+                      <li className="font-medium tracking-wide text-black dark:text-white transition-colors duration-200 hover:underline mb-2">
                         All Books
                       </li>
                     </Link>
                     <Link to={"/create-book"}>
-                      <li className="font-medium tracking-wide text-black dark:text-white transition-colors duration-200 hover:underline">
+                      <li className="font-medium tracking-wide text-black dark:text-white transition-colors duration-200 hover:underline mb-2">
                         Add Book
                       </li>
                     </Link>
@@ -119,7 +119,7 @@ export const Nav = () => {
             </div>
           )}
         </div>
-        <div className="ml-auto">
+        <div className="ml-auto ">
           <ModeToggle />
         </div>
       </div>
