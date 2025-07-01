@@ -1,16 +1,14 @@
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { createBookSchema, type CreateBookInput } from "@/schema/book.schema";
 import { useCreateBookMutation } from "@/redux/api/booksApi";
+import { createBookSchema, type CreateBookInput } from "@/schema/book.schema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
 
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
-import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import {
   Select,
   SelectContent,
@@ -18,6 +16,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
 
 const genres = [
   "FICTION",
@@ -63,7 +62,11 @@ export default function CreateBook() {
           {/* Title */}
           <div className="space-y-2">
             <Label htmlFor="title">Title</Label>
-            <Input id="title" {...register("title")} />
+            <Input
+              placeholder="Add your title here"
+              id="title"
+              {...register("title")}
+            />
             {errors.title && (
               <p className="text-sm text-destructive">{errors.title.message}</p>
             )}
@@ -73,7 +76,7 @@ export default function CreateBook() {
           <div className="space-y-2">
             <Label htmlFor="author">Author</Label>
             <Input
-              placeholder="Add your description here"
+              placeholder="Add your author here"
               id="author"
               {...register("author")}
             />
@@ -83,11 +86,33 @@ export default function CreateBook() {
               </p>
             )}
           </div>
+          {/* Image */}
+          <div className="space-y-2">
+            <Label htmlFor="image">Image</Label>
+            <Input
+              placeholder="Add your image url here"
+              id="image"
+              {...register("image")}
+            />
+            {errors.image && (
+              <p className="text-sm text-destructive">{errors.image.message}</p>
+            )}
+          </div>
 
           {/* Genre (Dropdown) */}
           <div className="space-y-2 ">
             <Label htmlFor="genre">Genre</Label>
-            <Select onValueChange={(value) => setValue("genre", value)}>
+            <Select
+              onValueChange={(
+                value:
+                  | "FICTION"
+                  | "NON_FICTION"
+                  | "SCIENCE"
+                  | "HISTORY"
+                  | "BIOGRAPHY"
+                  | "FANTASY"
+              ) => setValue("genre", value)}
+            >
               <SelectTrigger id="genre" className="w-full">
                 <SelectValue placeholder="Select Genre" />
               </SelectTrigger>
@@ -107,7 +132,11 @@ export default function CreateBook() {
           {/* ISBN */}
           <div className="space-y-2">
             <Label htmlFor="isbn">ISBN</Label>
-            <Input id="isbn" {...register("isbn")} />
+            <Input
+              placeholder="Add your ISBN here"
+              id="isbn"
+              {...register("isbn")}
+            />
             {errors.isbn && (
               <p className="text-sm text-destructive">{errors.isbn.message}</p>
             )}
@@ -116,13 +145,19 @@ export default function CreateBook() {
           {/* Description */}
           <div className="space-y-2">
             <Label htmlFor="description">Description</Label>
-            <Textarea id="description" rows={3} {...register("description")} />
+            <Textarea
+              placeholder="Add your description here"
+              id="description"
+              rows={3}
+              {...register("description")}
+            />
           </div>
 
           {/* Copies */}
           <div className="space-y-2">
             <Label htmlFor="copies">Copies</Label>
             <Input
+              placeholder="Add your copies here"
               id="copies"
               type="number"
               {...register("copies", { valueAsNumber: true })}
@@ -132,12 +167,6 @@ export default function CreateBook() {
                 {errors.copies.message}
               </p>
             )}
-          </div>
-
-          {/* Available */}
-          <div className="flex items-center space-x-2">
-            <Checkbox id="available" {...register("available")} />
-            <Label htmlFor="available">Available</Label>
           </div>
 
           {/* Submit */}
