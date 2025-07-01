@@ -11,6 +11,22 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
+const genres = [
+  "FICTION",
+  "NON_FICTION",
+  "SCIENCE",
+  "HISTORY",
+  "BIOGRAPHY",
+  "FANTASY",
+] as const;
 
 export default function CreateBook() {
   const navigate = useNavigate();
@@ -19,6 +35,7 @@ export default function CreateBook() {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm<CreateBookInput>({
     resolver: zodResolver(createBookSchema),
@@ -55,7 +72,11 @@ export default function CreateBook() {
           {/* Author */}
           <div className="space-y-2">
             <Label htmlFor="author">Author</Label>
-            <Input id="author" {...register("author")} />
+            <Input
+              placeholder="Add your description here"
+              id="author"
+              {...register("author")}
+            />
             {errors.author && (
               <p className="text-sm text-destructive">
                 {errors.author.message}
@@ -63,10 +84,21 @@ export default function CreateBook() {
             )}
           </div>
 
-          {/* Genre */}
-          <div className="space-y-2">
+          {/* Genre (Dropdown) */}
+          <div className="space-y-2 ">
             <Label htmlFor="genre">Genre</Label>
-            <Input id="genre" {...register("genre")} />
+            <Select onValueChange={(value) => setValue("genre", value)}>
+              <SelectTrigger id="genre" className="w-full">
+                <SelectValue placeholder="Select Genre" />
+              </SelectTrigger>
+              <SelectContent>
+                {genres.map((genre) => (
+                  <SelectItem key={genre} value={genre}>
+                    {genre.replace("_", " ")}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
             {errors.genre && (
               <p className="text-sm text-destructive">{errors.genre.message}</p>
             )}

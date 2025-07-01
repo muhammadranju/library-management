@@ -14,9 +14,12 @@ export default function BorrowBooks() {
   return (
     <div>
       <h2 className="text-xl font-semibold mb-4">Borrow Summary</h2>
-      <ul className="space-y-2">
-        {borrows?.data?.map((borrow: any) => (
-          <li key={borrow._id} className="border p-2 rounded">
+      <ul className="space-y-2 ">
+        {borrows?.data?.map((borrow) => (
+          <li
+            key={borrow._id}
+            className="border p-2 rounded dark:bg-neutral-900"
+          >
             <p>
               <strong>Book Title:</strong> {borrow.book.title}
             </p>
