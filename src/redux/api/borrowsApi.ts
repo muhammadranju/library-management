@@ -7,6 +7,14 @@ export const borrowsApi = createApi({
   }),
   tagTypes: ["Borrows"],
   endpoints: (builder) => ({
+    createBorrow: builder.mutation({
+      query: (borrowData) => ({
+        url: "/borrow",
+        method: "POST",
+        body: borrowData,
+      }),
+      invalidatesTags: ["Borrows"],
+    }),
     getAllBorrows: builder.query({
       query: () => "/borrow",
       providesTags: ["Borrows"],
@@ -14,4 +22,4 @@ export const borrowsApi = createApi({
   }),
 });
 
-export const { useGetAllBorrowsQuery } = borrowsApi;
+export const { useGetAllBorrowsQuery, useCreateBorrowMutation } = borrowsApi;
