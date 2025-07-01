@@ -3,6 +3,7 @@ import { z } from "zod";
 export const createBookSchema = z.object({
   title: z.string().min(1, "Title is required"),
   author: z.string().min(1, "Author is required"),
+  image: z.string().min(1, "Image is required"),
   genre: z.enum([
     "FICTION",
     "NON_FICTION",
