@@ -5,9 +5,18 @@ import EditBookDialog from "@/components/module/EditBookDialog";
 import CardSkeleton from "@/components/Skeletons/CardSkeleton";
 import { useGetBooksQuery } from "@/redux/api/booksApi";
 import { useGetAllBorrowsQuery } from "@/redux/api/borrowsApi";
-import type { BooksProps, IBook } from "@/types";
+import type { IBook } from "@/types";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+
+interface BooksApiResponse {
+  books: IBook[];
+  meta: {
+    total: number;
+    page: number;
+    limit: number;
+  };
+}
 
 export default function Books() {
   const [page, setPage] = useState(1);
@@ -18,7 +27,12 @@ export default function Books() {
     isLoading,
     isError,
     refetch,
-  } = useGetBooksQuery({ page, limit });
+  } = useGetBooksQuery({ page, limit }) as {
+    data?: BooksApiResponse;
+    isLoading: boolean;
+    isError: boolean;
+    refetch: () => void;
+  };
 
   const { refetch: refetchBorrows } = useGetAllBorrowsQuery(undefined);
 
@@ -56,10 +70,8 @@ export default function Books() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {isLoading
-          ? Array(9)
-              .fill(null)
-              .map((_, i) => <CardSkeleton key={i} />)
-          : booksData?.books?.map((book: BooksProps) => (
+          ? Array.from({ length: 9 }).map((_, i) => <CardSkeleton key={i} />)
+          : booksData?.books?.map((book) => (
               <BookCard
                 key={book._id}
                 book={book}
