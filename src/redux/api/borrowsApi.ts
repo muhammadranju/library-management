@@ -5,7 +5,7 @@ export const borrowsApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:3000/api", // Your backend base URL
   }),
-  tagTypes: ["Borrows"],
+  tagTypes: ["Borrows", "Books"],
   endpoints: (builder) => ({
     createBorrow: builder.mutation({
       query: (borrowData) => ({
@@ -13,11 +13,11 @@ export const borrowsApi = createApi({
         method: "POST",
         body: borrowData,
       }),
-      invalidatesTags: ["Borrows"],
+      invalidatesTags: ["Borrows", "Books"],
     }),
     getAllBorrows: builder.query({
       query: () => "/borrow",
-      providesTags: ["Borrows"],
+      providesTags: ["Borrows", "Books"],
     }),
   }),
 });
