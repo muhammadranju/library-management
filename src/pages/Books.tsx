@@ -8,8 +8,6 @@ import { useGetAllBorrowsQuery } from "@/redux/api/borrowsApi";
 import type { IBook } from "@/types";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-// import { Helmet } from "react-helmet";
-import { Helmet } from "react-helmet";
 
 interface BooksApiResponse {
   books: IBook[];
@@ -68,10 +66,6 @@ export default function Books() {
 
   return (
     <div className="p-6">
-      <Helmet>
-        <title>All Books</title>
-        <meta name="description" content="Books" />
-      </Helmet>
       <h1 className="text-2xl font-bold mb-6 mt-10">All Books</h1>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
