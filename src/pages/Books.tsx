@@ -9,6 +9,7 @@ import type { IBook } from "@/types";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "react-router";
+import { Helmet } from "react-helmet";
 
 interface BooksApiResponse {
   books: IBook[];
@@ -76,6 +77,15 @@ export default function Books() {
 
   return (
     <div>
+      {location.pathname === "/books" ? (
+        <Helmet>
+          <title>All Books</title>
+          <meta name="description" content="Borrow Summary" />
+        </Helmet>
+      ) : (
+        ""
+      )}
+
       <div className="mb-6 flex justify-between">
         {location.pathname === "/books" ? (
           <h1 className="text-2xl font-bold ">All Books</h1>
