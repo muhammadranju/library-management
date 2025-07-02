@@ -41,7 +41,7 @@ export const HeroSection = () => {
             </svg>
           </Link>
         </div>
-        <div className="relative ">
+        <div className="relative hidden">
           <svg
             className="absolute w-full text-teal-accent-400 dark:text-teal-700"
             fill="currentColor"
