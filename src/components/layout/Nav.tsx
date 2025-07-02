@@ -7,7 +7,7 @@ export const Nav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <div className="px-4 py-5 mx-auto   text-black dark:text-white  md:px-24 lg:px-8  bg-white dark:bg-neutral-950 ">
+    <div className="px-4 py-5 mx-auto   text-black dark:text-white  md:px-24 lg:px-8  sticky top-0 backdrop-blur-lg bg-white/50 dark:bg-neutral-950/50 ">
       <nav className="sm:max-w-xl md:max-w-full lg:max-w-screen-xl mx-auto z-50 ">
         <div className="relative flex items-center justify-between">
           <div className="flex items-center">

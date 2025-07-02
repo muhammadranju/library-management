@@ -1,8 +1,8 @@
 import { Link } from "react-router";
-
+import bannerImage from "../../assets/image.webp";
 export const HeroSection = () => {
   return (
-    <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20  ">
+    <div className="py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl   ">
       <div className="grid gap-5 row-gap-8 lg:grid-cols-2">
         <div className="flex flex-col justify-center">
           <div className="max-w-xl mb-6">
@@ -31,7 +31,7 @@ export const HeroSection = () => {
             aria-label=""
             className="inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 dark:text-deep-purple-300 hover:text-deep-purple-800 dark:hover:text-deep-purple-500"
           >
-            See more
+            See borrows
             <svg
               className="inline-block w-3 ml-2"
               fill="currentColor"
@@ -41,8 +41,8 @@ export const HeroSection = () => {
             </svg>
           </Link>
         </div>
-        <div className="relative hidden">
-          <svg
+        <div className="">
+          {/* <svg
             className="absolute w-full text-teal-accent-400 dark:text-teal-700"
             fill="currentColor"
             viewBox="0 0 600 392"
@@ -65,7 +65,13 @@ export const HeroSection = () => {
             <rect x="210" y="237" width="75" height="155" rx="8" />
             <rect x="420" y="205" width="75" height="187" rx="8" />
             <rect x="315" y="83" width="75" height="309" rx="8" />
-          </svg>
+          </svg> */}
+
+          <img
+            src={bannerImage}
+            alt="book"
+            className=" w-full  text-black dark:text-white rounded-md"
+          />
         </div>
       </div>
     </div>

@@ -1,23 +1,16 @@
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import {
-  Select,
-  SelectTrigger,
-  SelectValue,
-  SelectContent,
-  SelectItem,
-} from "@/components/ui/select";
-import { useState, useEffect } from "react";
+import { Label } from "@/components/ui/label";
 import { useUpdateBookMutation } from "@/redux/api/booksApi";
-import toast from "react-hot-toast";
 import type { IBook } from "@/types";
+import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 interface FormState {
   title: string;
@@ -26,7 +19,6 @@ interface FormState {
   isbn: string;
   image: string;
   copies: number;
-  available: boolean;
 }
 
 interface Props {
@@ -49,7 +41,6 @@ export default function EditBookDialog({
     isbn: "",
     image: "",
     copies: 0,
-    available: true,
   });
 
   const [updateBook] = useUpdateBookMutation();
@@ -63,7 +54,6 @@ export default function EditBookDialog({
         isbn: book.isbn,
         image: book.image,
         copies: book.copies,
-        available: book.available,
       });
     }
   }, [book]);
@@ -124,27 +114,6 @@ export default function EditBookDialog({
               }
             />
           </div>
-
-          <div className="space-y-1">
-            <Label htmlFor="available" className="text-sm">
-              Availability
-            </Label>
-            <Select
-              value={form.available ? "true" : "false"}
-              onValueChange={(val) =>
-                setForm((prev) => ({ ...prev, available: val === "true" }))
-              }
-            >
-              <SelectTrigger className="w-full">
-                <SelectValue placeholder="Select availability" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="true">Available</SelectItem>
-                <SelectItem value="false">Unavailable</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-
           <Button className="w-full mt-2" onClick={handleSubmit}>
             Save Changes
           </Button>
