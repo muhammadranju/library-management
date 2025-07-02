@@ -17,6 +17,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import { Helmet } from "react-helmet";
 
 const genres = [
   "FICTION",
@@ -56,6 +57,10 @@ export default function CreateBook() {
 
   return (
     <Card className="max-w-xl mx-auto mt-10">
+      <Helmet>
+        <title>Add New Book</title>
+        <meta name="description" content="Add New Book" />
+      </Helmet>
       <CardContent className="p-6">
         <h2 className="text-2xl font-bold mb-6">Add New Book</h2>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">

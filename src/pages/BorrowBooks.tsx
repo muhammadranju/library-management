@@ -1,6 +1,7 @@
 import BorrowSkeleton from "@/components/Skeletons/BorrowSkeleton";
 import { useGetAllBorrowsQuery } from "@/redux/api/borrowsApi";
 import type { BorrowProps } from "@/types";
+import { Helmet } from "react-helmet";
 
 export default function BorrowBooks() {
   const {
@@ -15,6 +16,10 @@ export default function BorrowBooks() {
 
   return (
     <div>
+      <Helmet>
+        <title>Borrow Summary</title>
+        <meta name="description" content="Borrow Summary" />
+      </Helmet>
       <h2 className="text-xl font-semibold mb-4">Borrow Summary</h2>
       <ul className="space-y-2 ">
         {isLoading ? (
