@@ -22,6 +22,7 @@ import { CalendarIcon } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router";
 
 interface BorrowDialogProps {
   book: IBook | null;
@@ -40,6 +41,7 @@ export default function BorrowDialog({
   const [quantity, setQuantity] = useState<number>(1);
   const [dueDate, setDueDate] = useState<Date | null>(null);
   const [createBorrow] = useCreateBorrowMutation();
+  const navigate = useNavigate();
 
   const handleSubmit = async () => {
     if (!book || quantity < 1 || !dueDate) {
@@ -60,6 +62,7 @@ export default function BorrowDialog({
         setQuantity(1);
         setDueDate(null);
         onComplete();
+        navigate("/borrow-summary");
       }, 300);
     } catch (error) {
       console.error(error);
