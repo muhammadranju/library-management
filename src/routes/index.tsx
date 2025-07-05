@@ -1,4 +1,5 @@
 import App from "@/App";
+import BookDetails from "@/pages/BookDetails";
 import Books from "@/pages/Books";
 import BorrowBooks from "@/pages/BorrowBooks";
 import CreateBook from "@/pages/CreateBook";
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
       {
         path: "books",
         Component: Books,
+      },
+      {
+        path: "books/:id",
+        Component: BookDetails,
       },
       {
         path: "create-book",
