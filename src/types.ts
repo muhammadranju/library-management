@@ -33,6 +33,7 @@ export interface BorrowProps {
   _id: string;
   bookId: string;
   quantity: number;
+  isbn: number;
   dueDate: string;
   totalQuantity: number;
   book: {

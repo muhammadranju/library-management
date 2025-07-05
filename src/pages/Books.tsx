@@ -27,6 +27,7 @@ export default function Books() {
   const {
     data: booksData,
     isLoading,
+
     isError,
     refetch,
   } = useGetBooksQuery({ page, limit }) as {
@@ -42,14 +43,21 @@ export default function Books() {
   const [borrowOpen, setBorrowOpen] = useState(false);
   const [editOpen, setEditOpen] = useState(false);
   const [deleteOpen, setDeleteOpen] = useState(false);
+  const [isPaginationLoading, setIsPaginationLoading] = useState(false);
 
   const location = useLocation();
 
+  // console.log();
+
   useEffect(() => {
+    setIsPaginationLoading(true);
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
+    setTimeout(() => {
+      setIsPaginationLoading(false);
+    }, 300);
   }, [page]);
 
   const handleBorrow = (book: IBook) => {
@@ -119,7 +127,7 @@ export default function Books() {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        {isLoading
+        {isLoading || isPaginationLoading
           ? Array.from({ length: 9 }).map((_, i) => <CardSkeleton key={i} />)
           : slicedBooks?.map((book) => (
               <BookCard

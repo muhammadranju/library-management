@@ -27,7 +27,7 @@ export default function BorrowBooks() {
         ) : (
           borrows?.data?.map((borrow: BorrowProps) => (
             <li
-              key={borrow._id}
+              key={borrow.isbn}
               className="border p-2 rounded dark:bg-neutral-900/40"
             >
               <p>
