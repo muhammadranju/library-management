@@ -3,13 +3,13 @@ import BorrowDialog from "@/components/module/BorrowDialog";
 import DeleteBookDialog from "@/components/module/DeleteBookDialog";
 import EditBookDialog from "@/components/module/EditBookDialog";
 import CardSkeleton from "@/components/Skeletons/CardSkeleton";
+import { Button } from "@/components/ui/button";
 import { useGetBooksQuery } from "@/redux/api/booksApi";
 import { useGetAllBorrowsQuery } from "@/redux/api/borrowsApi";
 import type { IBook } from "@/types";
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Link, useLocation } from "react-router";
+import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
+import { Link, useLocation } from "react-router";
 
 interface BooksApiResponse {
   books: IBook[];
@@ -44,6 +44,13 @@ export default function Books() {
   const [deleteOpen, setDeleteOpen] = useState(false);
 
   const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, [page]);
 
   const handleBorrow = (book: IBook) => {
     setSelectedBook(book);
