@@ -7,6 +7,7 @@ import { Separator } from "@/components/ui/separator";
 import { useGetBookByIdQuery, useGetBooksQuery } from "@/redux/api/booksApi";
 import { useGetAllBorrowsQuery } from "@/redux/api/borrowsApi";
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 import { useParams } from "react-router";
 
 export default function BookDetails() {
@@ -36,6 +37,10 @@ export default function BookDetails() {
   return (
     <>
       {/* <SingleBookSkeleton /> */}
+      <Helmet>
+        <title>{book?.title}</title>
+        <meta name="description" content={book?.description} />
+      </Helmet>
       <div className="max-w-6xl mx-auto p-6 space-y-6">
         <Card className="grid grid-cols-1 md:grid-cols-2 gap-6 p-4 md:p-6 rounded-2xl shadow-lg">
           <div className="w-full h-full">
