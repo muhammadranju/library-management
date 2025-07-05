@@ -1,4 +1,4 @@
-import { Pencil, Trash2 } from "lucide-react";
+import { ListCollapse, Pencil, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import type { IBook } from "@/types";
@@ -57,6 +57,12 @@ export default function BookCard({
             <Button variant="outline" onClick={() => onEdit(book)}>
               <Pencil className="w-4 h-4 mr-1" /> Edit
             </Button>
+            <Link to={`/books/${book._id}`}>
+              <Button variant="outline">
+                <ListCollapse className="w-4 h-4 mr-1" />
+                Book
+              </Button>
+            </Link>
             <Button
               variant="ghost"
               className="text-destructive hover:bg-destructive/10"
