@@ -34,12 +34,15 @@ export const booksApi = createApi({
     getBooks: builder.query<GetBooksResponse, GetBooksParams | void>({
       query: ({ page = 1, limit = 6 } = {}) =>
         `/books?page=${page}&limit=${limit}`,
-      providesTags: ["Books"],
+      providesTags: ["Books", "Borrows"],
     }),
 
-    getBookById: builder.query<IBook, string>({
+    getBookById: builder.query({
       query: (id) => `/books/${id}`,
-      providesTags: (_result, _error, id) => [{ type: "Books", id }],
+      providesTags: (_result, _error, id) => [
+        { type: "Books", id },
+        { type: "Borrows", id },
+      ],
     }),
 
     updateBook: builder.mutation<void, { id: string; data: Partial<IBook> }>({
